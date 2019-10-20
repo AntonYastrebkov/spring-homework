@@ -2,33 +2,13 @@ package controller;
 
 import entities.Task;
 
-public class UserController {
+public interface UserController  {
 
-    public void singUp() {
-
-    }
-
-    public void singIn() {
-
-    }
-
-    public void createTask() {
-
-    }
-
-    public void deleteTask(Integer taskId) {
-
-    }
-
-    public void findAllUserTask(Integer userId) {
-
-    }
-
-    public void markTaskComplete(Task task) {
-        task.setTaskComplete(true);
-    }
-
-    public void markTaskIncomplete(Task task) {
-        task.setTaskComplete(false);
-    }
+    void singUp();
+    void singIn();
+    void createTask();
+    void deleteTask(Integer taskId);
+    void findAllUserTask(Integer userId);
+    void markTaskComplete(Task task);
+    void markTaskIncomplete(Task task);
 }
