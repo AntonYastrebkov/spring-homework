@@ -14,8 +14,9 @@ public class UserCotrollerImpl implements UserController{
 
     }
 
-    public void createTask() {
-
+    @Override
+    public Task createTask() {
+        return new Task();
     }
 
     @Override

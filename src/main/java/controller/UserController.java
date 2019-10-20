@@ -6,7 +6,7 @@ public interface UserController  {
 
     void singUp();
     void singIn();
-    void createTask();
+    Task createTask();
     void deleteTask(Integer taskId);
     void findAllUserTask(Integer userId);
     void markTaskComplete(Task task);
