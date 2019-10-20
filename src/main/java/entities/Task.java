@@ -5,16 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
-  private Long id;
-  private String name;
-  private String email;
-  private String phoneNumber;
-  private String password;
-
+public class Task {
+    private Integer taskId;
+    private String taskDescription;
+    private Boolean taskComplete;
+    private Integer userId;
 }
