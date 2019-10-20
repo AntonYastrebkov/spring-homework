@@ -10,6 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task {
+
     private Integer taskId;
     private String taskDescription;
     private Boolean taskComplete;
