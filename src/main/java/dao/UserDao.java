@@ -1,9 +1,18 @@
 package dao;
 
 import entities.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class UserDao {
+
     User user = new User();
+
+    @Bean
+    public User getUser() {
+        return user;
+    }
 
     public Long getUserId() {
         return user.getId();

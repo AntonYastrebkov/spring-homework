@@ -1,8 +1,17 @@
 package controller;
 
 import entities.Task;
+import entities.User;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class UserCotrollerImpl implements UserController{
+
+    @Bean
+    public UserController getUserController() {
+        return new UserCotrollerImpl();
+    }
 
     @Override
     public void singUp() {
