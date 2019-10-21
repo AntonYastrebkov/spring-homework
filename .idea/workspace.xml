@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b73234b-f307-4a98-b2bb-4bdb13715c1d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserControllerImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/UserService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -104,7 +102,28 @@
       <option name="project" value="LOCAL" />
       <updated>1571651315599</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Let's begin to create Service layer">
+      <created>1571651907710</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1571651907710</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Let's begin to create Service layer">
+      <created>1571651928548</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1571651928548</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Sign-in/sign-up in service">
+      <created>1571652166818</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1571652166818</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +144,8 @@
     <MESSAGE value="Repository interface added, let's implement DAO methods" />
     <MESSAGE value="Added DAO methods" />
     <MESSAGE value="Methods for User DAO and Task DAO are now in different classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Methods for User DAO and Task DAO are now in different classes" />
+    <MESSAGE value="Let's begin to create Service layer" />
+    <MESSAGE value="Sign-in/sign-up in service" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sign-in/sign-up in service" />
   </component>
 </project>

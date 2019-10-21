@@ -3,6 +3,9 @@ package controller;
 import dao.TaskRepository;
 import dao.UserRepository;
 import entities.Task;
+import entities.User;
+import exception.UserNotFoundException;
+import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -18,18 +21,27 @@ public class UserControllerImpl {
   }
 
   // @Override
-  public void singUp(String email, String password) {
-
-
+  public void singUp(String name, String email, String number, String password) {
+    try {
+      userService.registerNewUser(name, email, number, password);
+    } catch (RuntimeException e) {
+      System.out.println(e.getMessage());
+    }
   }
 
   // @Override
-  public void singIn() {
+  public void singIn(String email, String password) {
+    try {
+      User user = userService.signIn(email, password);
+    } catch (UserNotFoundException | WrongPassword e) {
+      System.out.println(e.getMessage());
+    }
 
   }
 
   // @Override
   public Task createTask() {
+    user
     return new Task();
   }
 
