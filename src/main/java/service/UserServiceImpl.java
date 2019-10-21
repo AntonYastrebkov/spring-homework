@@ -2,7 +2,10 @@ package service;
 
 import dao.TaskRepository;
 import dao.UserRepository;
+import entities.User;
 import exception.EmailExistsException;
+import exception.UserNotFoundException;
+import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserServiceImpl implements UserService {
@@ -23,5 +26,18 @@ public class UserServiceImpl implements UserService {
         if (userRepository.saveUser(name, email, number, password) == null) {
             throw new RuntimeException("DAO exception");
         }
+    }
+
+    @Override
+    public User signIn(String email, String password) {
+        User user = userRepository.findUserByEmail(email);
+        if (user == null) {
+            throw new UserNotFoundException("Wrong email");
+        }
+        if (! user.getPassword().equals(password)) {
+            throw new WrongPassword("Wrong password");
+        }
+
+        return user;
     }
 }
