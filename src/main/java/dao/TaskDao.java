@@ -28,13 +28,14 @@ public class TaskDao implements TaskRepository {
   }
 
   @Override
-  public void deleteTaskById(Long taskId) {
+  public boolean deleteTaskById(Long taskId) {
     for (Task t : taskList) {
       if (t.getTaskId().equals(taskId)) {
         taskList.remove(t);
-        break;
+        return true;
       }
     }
+    return false;
   }
 
   @Override

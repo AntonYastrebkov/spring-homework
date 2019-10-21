@@ -17,4 +17,9 @@ public class TaskServiceImpl implements TaskService{
     public Task createTask(String description, User user) {
         return taskRepository.createTask(description, user);
     }
+
+    @Override
+    public boolean deleteTask(Long id) {
+        return taskRepository.deleteTaskById(id);
+    }
 }

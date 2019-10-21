@@ -1,23 +1,23 @@
 package controller;
 
-import dao.TaskRepository;
-import dao.UserRepository;
 import entities.Task;
 import entities.User;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
+import service.TaskService;
 import service.UserService;
 
 @Controller
 public class UserControllerImpl {
   private final UserService userService;
+  private final TaskService taskService;
 
   @Autowired
-  public UserControllerImpl(UserService userService) {
+  public UserControllerImpl(UserService userService, TaskService taskService) {
     this.userService = userService;
+    this.taskService = taskService;
   }
 
   // @Override
@@ -40,18 +40,24 @@ public class UserControllerImpl {
   }
 
   // @Override
-  public Task createTask() {
-    user
-    return new Task();
+  public Task createTask(String description, User user) {
+    Task task = taskService.createTask(description, user);
+    System.out.println("Task created: \n" + task.getTaskDescription());
+    return task;
   }
 
   // @Override
-  public void deleteTask(Integer taskId) {
-
+  public void deleteTask(Long taskId) {
+    if (taskService.deleteTask(taskId)) {
+      System.out.println("Task successfully deleted!");
+    }
+    else {
+      System.out.println("No task with such ID found!");
+    }
   }
 
   // @Override
-  public void findAllUserTask(Integer userId) {
+  public void findAllUserTask(Long userId) {
 
   }
 

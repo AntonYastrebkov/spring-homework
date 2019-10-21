@@ -8,7 +8,7 @@ import java.util.List;
 public interface TaskRepository {
     Task createTask(String description, User user);
 
-    void deleteTaskById(Long taskId);
+    boolean deleteTaskById(Long taskId);
 
     List<Task> findAllTaskByUserId(Long userId);
 
