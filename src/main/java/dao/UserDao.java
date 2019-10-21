@@ -1,35 +1,72 @@
 package dao;
 
+import entities.Task;
 import entities.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Repository;
 
-@Configuration
-public class UserDao {
+import java.util.ArrayList;
+import java.util.List;
 
-  User user = new User();
+@Repository
+public class UserDao implements UserRepository {
+  private final List<User> userList;
+  private List<Task> taskList;
 
-  public User getUser() {
-    return user;
+  private long userIdCount;
+  private long taskIdCount;
+
+  public UserDao() {
+    this.userList = new ArrayList<>();
+    userIdCount = 1;
+    taskIdCount = 1;
   }
 
-  public Long getUserId() {
-    return user.getId();
+  @Override
+  public Task createTask(String description, User user) {
+    Task task = new Task(taskIdCount++, description, false, user.getId());
+    taskList.add(task);
+    return task;
   }
 
-  public String getName() {
-    return user.getName();
+  @Override
+  public void deleteTaskById(Long taskId) {
+
   }
 
-  public String getPhoneNumber() {
-    return user.getPhoneNumber();
+  @Override
+  public List<Task> findAllTaskByUserId(Long userId) {
+    return null;
   }
 
-  public String getEmail() {
-    return user.getEmail();
+  @Override
+  public Task markTaskAsComplete(Long taskId) {
+    return null;
   }
 
-  public String getPassword() {
-    return user.getPassword();
+  @Override
+  public Task markTaskAsNotComplete(Long taskId) {
+    return null;
   }
+
+//  public Long getUserById() {
+//    return user.getId();
+//  }
+//
+//  public String getName() {
+//    return user.getName();
+//  }
+//
+//  public String getPhoneNumber() {
+//    return user.getPhoneNumber();
+//  }
+//
+//  public String getEmail() {
+//    return user.getEmail();
+//  }
+//
+//  public String getPassword() {
+//    return user.getPassword();
+//  }
 }

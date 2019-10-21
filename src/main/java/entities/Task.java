@@ -14,11 +14,11 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Task {
 
-  private Integer taskId;
+  private Long taskId;
 
   private String taskDescription;
   private Boolean taskComplete;
-  private Integer userId;
+  private Long userId;
 
   @Override
   public boolean equals(Object o) {
