@@ -1,19 +1,21 @@
+import config.ApplicationConfig;
 import controller.UserController;
 import entities.Task;
+import entities.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
 
   public static void main(String[] args) {
-    ApplicationContext taskContext =
-        new AnnotationConfigApplicationContext("entities");
-    ApplicationContext controllerContext =
-        new AnnotationConfigApplicationContext("controller");
+    AnnotationConfigApplicationContext context =
+        new AnnotationConfigApplicationContext();
 
-    Task task = taskContext.getBean(Task.class);
-    UserController userController = controllerContext.getBean(UserController.class);
-    System.out.println(userController.createTask());
-    System.out.println(task.getTaskComplete());
+    context.register(ApplicationConfig.class);
+    context.refresh();
+
+    UserController userController = context.getBean(UserController.class);
+
+    User user = new User(0l, "firstUser", "user@user.com", "+7911", "password");
   }
 }

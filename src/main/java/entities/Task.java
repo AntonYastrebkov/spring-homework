@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 public class Task {
 
   private Long taskId;
-
   private String taskDescription;
   private Boolean taskComplete;
   private Long userId;

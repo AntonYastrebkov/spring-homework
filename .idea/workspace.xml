@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0b73234b-f307-4a98-b2bb-4bdb13715c1d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserControllerImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserControllerImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/entities/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/entities/Task.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,17 +16,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="task_1" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RvH16H3SuFafGjppiJF3TE28MJ" />
@@ -74,56 +70,6 @@
       <option name="presentableId" value="Default" />
       <updated>1570540432022</updated>
     </task>
-    <task id="LOCAL-00001" summary=".gitignore added">
-      <created>1570626525038</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1570626525038</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Repository interface added, let's implement DAO methods">
-      <created>1571650600311</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1571650600311</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Added DAO methods">
-      <created>1571650847024</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1571650847024</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Methods for User DAO and Task DAO are now in different classes">
-      <created>1571651315599</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1571651315599</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Let's begin to create Service layer">
-      <created>1571651907710</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1571651907710</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Let's begin to create Service layer">
-      <created>1571651928548</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1571651928548</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Sign-in/sign-up in service">
-      <created>1571652166818</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1571652166818</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -138,14 +84,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value=".gitignore added" />
-    <MESSAGE value="Repository interface added, let's implement DAO methods" />
-    <MESSAGE value="Added DAO methods" />
-    <MESSAGE value="Methods for User DAO and Task DAO are now in different classes" />
-    <MESSAGE value="Let's begin to create Service layer" />
-    <MESSAGE value="Sign-in/sign-up in service" />
-    <option name="LAST_COMMIT_MESSAGE" value="Sign-in/sign-up in service" />
   </component>
 </project>
