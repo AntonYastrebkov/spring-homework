@@ -9,7 +9,6 @@ public class TaskDao {
 
   private Task task = new Task();
 
-  @Bean
   public Task getTask() {
     return task;
   }

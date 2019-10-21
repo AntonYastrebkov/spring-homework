@@ -9,7 +9,6 @@ public class UserDao {
 
   User user = new User();
 
-  @Bean
   public User getUser() {
     return user;
   }
