@@ -32,21 +32,44 @@ public class UserDao implements UserRepository {
 
   @Override
   public void deleteTaskById(Long taskId) {
-
+    for (Task t : taskList) {
+      if (t.getTaskId().equals(taskId)) {
+        taskList.remove(t);
+        break;
+      }
+    }
   }
 
   @Override
   public List<Task> findAllTaskByUserId(Long userId) {
-    return null;
+    List<Task> list = new ArrayList<>();
+    for (Task t : taskList) {
+      if (t.getUserId().equals(userId)) {
+        list.add(t);
+      }
+    }
+    return list;
   }
 
   @Override
   public Task markTaskAsComplete(Long taskId) {
+    for (Task t : taskList) {
+      if (t.getTaskId().equals(taskId)) {
+        t.setTaskComplete(true);
+        return t;
+      }
+    }
     return null;
   }
 
   @Override
   public Task markTaskAsNotComplete(Long taskId) {
+    for (Task t : taskList) {
+      if (t.getTaskId().equals(taskId)) {
+        t.setTaskComplete(false);
+        return t;
+      }
+    }
     return null;
   }
 
