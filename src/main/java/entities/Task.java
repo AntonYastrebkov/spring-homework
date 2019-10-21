@@ -1,6 +1,7 @@
 package entities;
 
 import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,28 +15,36 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class Task {
 
-  private Long taskId;
-  private String taskDescription;
-  private Boolean taskComplete;
-  private Long userId;
+    private Long taskId;
+    private String taskDescription;
+    private Boolean taskComplete;
+    private Long userId;
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Task task = (Task) o;
+        return Objects.equals(taskId, task.taskId) &&
+                Objects.equals(taskDescription, task.taskDescription) &&
+                Objects.equals(taskComplete, task.taskComplete) &&
+                Objects.equals(userId, task.userId);
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Task task = (Task) o;
-    return Objects.equals(taskId, task.taskId) &&
-        Objects.equals(taskDescription, task.taskDescription) &&
-        Objects.equals(taskComplete, task.taskComplete) &&
-        Objects.equals(userId, task.userId);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(taskId, taskDescription, taskComplete, userId);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(taskId, taskDescription, taskComplete, userId);
+    }
+
+    @Override
+    public String toString() {
+        return "Task: {id=" + taskId.toString() +
+                "description=\"" + taskDescription +
+                "\" completed=" + taskComplete +
+                " userID=" + userId.toString() + "}";
+    }
 }

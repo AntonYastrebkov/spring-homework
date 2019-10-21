@@ -2,96 +2,61 @@ package dao;
 
 import entities.Task;
 import entities.User;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class TaskDao implements TaskRepository {
-  private List<Task> taskList;
+    private List<Task> taskList;
 
-  private long taskIdCount;
+    private long taskIdCount;
 
-  public TaskDao() {
-    this.taskList = new ArrayList<>();
-    this.taskIdCount = 1;
-  }
-
-  @Override
-  public Task createTask(String description, User user) {
-    Task task = new Task(taskIdCount++, description, false, user.getId());
-    taskList.add(task);
-    return task;
-  }
-
-  @Override
-  public boolean deleteTaskById(Long taskId) {
-    for (Task t : taskList) {
-      if (t.getTaskId().equals(taskId)) {
-        taskList.remove(t);
-        return true;
-      }
+    public TaskDao() {
+        this.taskList = new ArrayList<>();
+        this.taskIdCount = 1;
     }
-    return false;
-  }
 
-  @Override
-  public List<Task> findAllTaskByUserId(Long userId) {
-    List<Task> list = new ArrayList<>();
-    for (Task t : taskList) {
-      if (t.getUserId().equals(userId)) {
-        list.add(t);
-      }
+    @Override
+    public Task createTask(String description, User user) {
+        Task task = new Task(taskIdCount++, description, false, user.getId());
+        taskList.add(task);
+        return task;
     }
-    return list;
-  }
 
-  @Override
-  public Task markTaskAsComplete(Long taskId) {
-    for (Task t : taskList) {
-      if (t.getTaskId().equals(taskId)) {
-        t.setTaskComplete(true);
-        return t;
-      }
+    @Override
+    public boolean deleteTaskById(Long taskId) {
+        for (Task t : taskList) {
+            if (t.getTaskId().equals(taskId)) {
+                taskList.remove(t);
+                return true;
+            }
+        }
+        return false;
     }
-    return null;
-  }
 
-  @Override
-  public Task markTaskAsNotComplete(Long taskId) {
-    for (Task t : taskList) {
-      if (t.getTaskId().equals(taskId)) {
-        t.setTaskComplete(false);
-        return t;
-      }
+    @Override
+    public List<Task> findAllTaskByUserId(Long userId) {
+        return taskList.stream()
+                .filter(t -> t.getUserId().equals(userId))
+                .collect(Collectors.toList());
     }
-    return null;
-  }
 
+    @Override
+    public void markTaskAsComplete(Long taskId) {
+        taskList.stream()
+                .filter(t -> t.getTaskId()
+                        .equals(taskId))
+                .forEach(t -> t.setTaskComplete(true));
+    }
 
-//  private Task task = new Task();
-//
-//  public Task getTask() {
-//    return task;
-//  }
-//
-//  public Integer getTaskId() {
-//    return task.getTaskId();
-//  }
-//
-//  public String getTaskDescription() {
-//    return task.getTaskDescription();
-//  }
-//
-//  public Boolean getTaskComplete() {
-//    return task.getTaskComplete();
-//  }
-//
-//  public Integer getTaskUserId() {
-//    return task.getUserId();
-//  }
+    @Override
+    public void markTaskAsNotComplete(Long taskId) {
+        taskList.stream()
+                .filter(t -> t.getTaskId().equals(taskId))
+                .forEach(t -> t.setTaskComplete(false));
+    }
 
 }

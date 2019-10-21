@@ -1,9 +1,6 @@
 package dao;
 
-import entities.Task;
 import entities.User;
-
-import java.util.List;
 
 public interface UserRepository {
 

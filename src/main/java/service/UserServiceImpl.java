@@ -7,7 +7,9 @@ import exception.EmailExistsException;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
@@ -37,7 +39,6 @@ public class UserServiceImpl implements UserService {
         if (! user.getPassword().equals(password)) {
             throw new WrongPassword("Wrong password");
         }
-
         return user;
     }
 }

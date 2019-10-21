@@ -2,7 +2,6 @@ package dao;
 
 import entities.Task;
 import entities.User;
-
 import java.util.List;
 
 public interface TaskRepository {
@@ -12,7 +11,7 @@ public interface TaskRepository {
 
     List<Task> findAllTaskByUserId(Long userId);
 
-    Task markTaskAsComplete(Long taskId);
+    void markTaskAsComplete(Long taskId);
 
-    Task markTaskAsNotComplete(Long taskId);
+    void markTaskAsNotComplete(Long taskId);
 }
