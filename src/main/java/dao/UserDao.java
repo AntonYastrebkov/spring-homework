@@ -7,30 +7,30 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class UserDao {
 
-    User user = new User();
+  User user = new User();
 
-    @Bean
-    public User getUser() {
-        return user;
-    }
+  @Bean
+  public User getUser() {
+    return user;
+  }
 
-    public Long getUserId() {
-        return user.getId();
-    }
+  public Long getUserId() {
+    return user.getId();
+  }
 
-    public String getName() {
-        return user.getName();
-    }
+  public String getName() {
+    return user.getName();
+  }
 
-    public String getPhoneNumber() {
-        return user.getPhoneNumber();
-    }
+  public String getPhoneNumber() {
+    return user.getPhoneNumber();
+  }
 
-    public String getEmail() {
-        return user.getEmail();
-    }
+  public String getEmail() {
+    return user.getEmail();
+  }
 
-    public String getPassword() {
-        return user.getPassword();
-    }
+  public String getPassword() {
+    return user.getPassword();
+  }
 }

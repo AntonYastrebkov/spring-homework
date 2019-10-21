@@ -1,17 +1,19 @@
 import controller.UserController;
-import dao.TaskDao;
 import entities.Task;
-import entities.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Application {
 
   public static void main(String[] args) {
-    ApplicationContext applicationContext =
-            new AnnotationConfigApplicationContext("controller");
+    ApplicationContext taskContext =
+        new AnnotationConfigApplicationContext("entities");
+    ApplicationContext controllerContext =
+        new AnnotationConfigApplicationContext("controller");
 
-    UserController controller = applicationContext.getBean(UserController.class);
-    
+    Task task = taskContext.getBean(Task.class);
+    UserController userController = controllerContext.getBean(UserController.class);
+    System.out.println(userController.createTask());
+    System.out.println(task.getTaskComplete());
   }
 }
