@@ -20,6 +20,7 @@ public class User {
     private String email;
     private String phoneNumber;
     private String password;
+    private String subscription;
 
     @Override
     public boolean equals(Object o) {
