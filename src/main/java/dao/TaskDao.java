@@ -1,6 +1,7 @@
 package dao;
 
 import entities.Task;
+import entities.TaskPriority;
 import entities.User;
 import org.springframework.stereotype.Repository;
 
@@ -21,7 +22,8 @@ public class TaskDao implements TaskRepository {
 
     @Override
     public Task createTask(String description, User user) {
-        Task task = new Task(taskIdCount++, description, false, user.getId());
+        Task task = new Task(
+                taskIdCount++, description, false, user.getId(), TaskPriority.HIGH);
         taskList.add(task);
         return task;
     }

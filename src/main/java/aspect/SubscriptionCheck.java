@@ -16,6 +16,6 @@ public class SubscriptionCheck {
 
     @Before("onTaskCreate()")
     public void beforeTaskCreate(JoinPoint jp) {
-
+        System.out.println("Aspect is here!");
     }
 }

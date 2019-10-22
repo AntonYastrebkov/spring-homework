@@ -19,7 +19,7 @@ public class UserDao implements UserRepository {
 
     @Override
     public User saveUser(String name, String email, String number, String password) {
-        User user = new User(userIdCount++, name, email, number, password);
+        User user = new User(userIdCount++, name, email, number, password, "");
         userList.add(user);
         return user;
     }
