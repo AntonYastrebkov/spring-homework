@@ -23,13 +23,13 @@ public class Application {
                 "name212121", "email2@dot.com", "+789456123", "password");
         User user2 = userController.singIn("email2@dot.com", "password");
 
-
         Task task = userController.createTask("kuhvckwgw", user);
         userController.createTask("kuhv", user);
         userController.createTask("kuhv11111111111", user2);
         userController.findAllUserTask(user.getId());
 
         userController.subscribe(user, "super");
+        userController.subscribe(user, "secret");
         userController.subscribe(user, "secret");
         userController.markTaskComplete(task.getTaskId());
 

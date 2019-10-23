@@ -57,6 +57,6 @@ public class UserServiceImpl implements UserService {
             return;
         }
         user.setSubscription(subscriptionKey);
-        System.out.println("Subscription");
+        System.out.println("Subscription success!");
     }
 }

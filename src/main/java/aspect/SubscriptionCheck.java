@@ -8,12 +8,18 @@ import java.util.List;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import service.TaskService;
 
 @Aspect
 @Component
 public class SubscriptionCheck {
+
+  @Autowired
+  public SubscriptionCheck(TaskService taskService) {
+    this.taskService = taskService;
+  }
 
   private TaskService taskService;
   private static final String IS_SUBSCRIBED = "5ebe2294ecd0e0f08eab7690d2a6ee69";
@@ -29,11 +35,7 @@ public class SubscriptionCheck {
     System.out.println(user);
     if (!user.getSubscription().equals(IS_SUBSCRIBED)) {
       List<Task> taskList = new ArrayList<>();
-      try {
-        taskList = taskService.findAllTasksByUserId(user.getId());
-      } catch (RuntimeException e) {
-        e.printStackTrace();
-      }
+      taskList = taskService.findAllTasksByUserId(user.getId());
       if (taskList.size() >= 10) {
         throw new TaskOverflowException(
             "Unsubscribed user can only have not more than 10 tasks!");

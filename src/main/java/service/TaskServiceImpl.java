@@ -3,9 +3,9 @@ package service;
 import dao.TaskRepository;
 import entities.Task;
 import entities.User;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class TaskServiceImpl implements TaskService{

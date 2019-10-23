@@ -3,11 +3,10 @@ package dao;
 import entities.Task;
 import entities.TaskPriority;
 import entities.User;
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class TaskDao implements TaskRepository {
