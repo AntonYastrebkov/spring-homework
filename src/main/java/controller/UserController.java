@@ -14,12 +14,10 @@ import service.UserService;
 public class UserController {
 
   private final UserService userService;
-  private final TaskService taskService;
 
   @Autowired
-  public UserController(UserService userService, TaskService taskService) {
+  public UserController(UserService userService) {
     this.userService = userService;
-    this.taskService = taskService;
   }
 
   public void singUp(String name, String email, String number, String password) {
@@ -45,39 +43,8 @@ public class UserController {
     return user;
   }
 
-  public Task createTask(String description, User user) {
-    Task task = taskService.createTask(description, user);
-    System.out.println("Task created: \n" + task.getTaskDescription());
-    return task;
-  }
-
-  public void deleteTask(Long taskId) {
-    if (taskService.deleteTask(taskId)) {
-      System.out.println("Task successfully deleted!");
-    } else {
-      System.out.println("No task with such ID found!");
-    }
-  }
-
-  public void findAllUserTask(Long userId) {
-    for (Task t : taskService.findAllTasksByUserId(userId)) {
-      System.out.println(t.toString());
-    }
-  }
 
   public void subscribe(String userEmail) {
     userService.subscribe(userEmail);
-  }
-
-  public void setTaskPriority(Long taskId, TaskPriority taskPriority) {
-    taskService.setTaskPriority(taskId, taskPriority);
-  }
-
-  public void markTaskComplete(Long taskId) {
-    taskService.markTaskComplete(taskId);
-  }
-
-  public void markTaskNotComplete(Long taskId) {
-    taskService.markTaskNotComplete(taskId);
   }
 }
