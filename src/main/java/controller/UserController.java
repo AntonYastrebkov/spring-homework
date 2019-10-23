@@ -65,8 +65,8 @@ public class UserController {
     }
   }
 
-  public void subscribe(String userEmail, String promoCode) {
-    userService.subscribe(userEmail, promoCode);
+  public void subscribe(String userEmail) {
+    userService.subscribe(userEmail);
   }
 
   public void setTaskPriority(Long taskId, TaskPriority taskPriority) {

@@ -6,6 +6,7 @@ import entities.User;
 import exception.EmailExistsException;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +44,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void subscribe(String userEmail, String promoCode) {
-        userRepository.subscribe(userEmail, promoCode);
+    public void subscribe(String userEmail) {
+        User user = userRepository.findUserByEmail(userEmail);
+        String keyWord = "secret";
+        String subscriptionKey = DigestUtils.md5Hex(keyWord);
+        if(user.getSubscription().equals(subscriptionKey)){
+            System.out.println("Subscription already exists!");
+            return;
+        }
+
+        userRepository.subscribe(userEmail, subscriptionKey);
     }
 }

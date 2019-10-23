@@ -30,9 +30,9 @@ public class Application {
         userController.findAllUserTask(user.getId());
 
         userController.setTaskPriority(task.getTaskId(), TaskPriority.LOW);
-        userController.subscribe(user.getEmail(), "super");
-        userController.subscribe(user.getEmail(), "secret");
-        userController.subscribe(user.getEmail(), "secret");
+        userController.subscribe(user.getEmail());
+        userController.subscribe(user.getEmail());
+        userController.subscribe(user.getEmail());
         userController.markTaskComplete(task.getTaskId());
 
         userController.findAllUserTask(user.getId());
