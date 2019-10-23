@@ -2,6 +2,7 @@ package service;
 
 import dao.TaskRepository;
 import entities.Task;
+import entities.TaskPriority;
 import entities.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,11 @@ public class TaskServiceImpl implements TaskService{
     @Override
     public List<Task> findAllTasksByUserId(Long userId) {
         return taskRepository.findAllTaskByUserId(userId);
+    }
+
+    @Override
+    public void setTaskPriority(Long taskId, TaskPriority taskPriority) {
+        taskRepository.setTaskPriority(taskId, taskPriority);
     }
 
     @Override

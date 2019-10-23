@@ -60,4 +60,10 @@ public class TaskDao implements TaskRepository {
                 .forEach(t -> t.setTaskComplete(false));
     }
 
+    @Override
+    public void setTaskPriority(Long id, TaskPriority taskPriority) {
+        taskList.stream().filter(t -> t.getTaskId()
+            .equals(id))
+            .forEach(t -> t.setPriority(taskPriority));
+    }
 }

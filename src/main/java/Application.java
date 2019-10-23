@@ -1,6 +1,7 @@
 import config.ApplicationConfig;
 import controller.UserController;
 import entities.Task;
+import entities.TaskPriority;
 import entities.User;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -24,6 +25,7 @@ public class Application {
         User user2 = userController.singIn("email2@dot.com", "password");
 
         Task task = userController.createTask("kuhvckwgw", user);
+        userController.setTaskPriority(task.getTaskId(), TaskPriority.LOW);
         userController.createTask("kuhv", user);
         userController.createTask("kuhv11111111111", user2);
         userController.findAllUserTask(user.getId());

@@ -1,6 +1,7 @@
 package controller;
 
 import entities.Task;
+import entities.TaskPriority;
 import entities.User;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
@@ -11,67 +12,72 @@ import service.UserService;
 
 @Component
 public class UserController {
-    private final UserService userService;
-    private final TaskService taskService;
 
-    @Autowired
-    public UserController(UserService userService, TaskService taskService) {
-        this.userService = userService;
-        this.taskService = taskService;
-    }
+  private final UserService userService;
+  private final TaskService taskService;
 
-    public void singUp(String name, String email, String number, String password) {
-        try {
-            userService.registerNewUser(name, email, number, password);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
-        System.out.println("User successfully signed up!");
-    }
+  @Autowired
+  public UserController(UserService userService, TaskService taskService) {
+    this.userService = userService;
+    this.taskService = taskService;
+  }
 
-    public User singIn(String email, String password) {
-        User user = null;
-        try {
-            user = userService.signIn(email, password);
-        } catch (UserNotFoundException | WrongPassword e) {
-            System.out.println(e.getMessage());
-        }
-        if (user != null) {
-            System.out.println("User registered:");
-            System.out.println(user.toString());
-        }
-        return user;
+  public void singUp(String name, String email, String number, String password) {
+    try {
+      userService.registerNewUser(name, email, number, password);
+    } catch (RuntimeException e) {
+      System.out.println(e.getMessage());
     }
+    System.out.println("User successfully signed up!");
+  }
 
-    public Task createTask(String description, User user) {
-        Task task = taskService.createTask(description, user);
-        System.out.println("Task created: \n" + task.getTaskDescription());
-        return task;
+  public User singIn(String email, String password) {
+    User user = null;
+    try {
+      user = userService.signIn(email, password);
+    } catch (UserNotFoundException | WrongPassword e) {
+      System.out.println(e.getMessage());
     }
+    if (user != null) {
+      System.out.println("User registered:");
+      System.out.println(user.toString());
+    }
+    return user;
+  }
 
-    public void deleteTask(Long taskId) {
-        if (taskService.deleteTask(taskId)) {
-            System.out.println("Task successfully deleted!");
-        } else {
-            System.out.println("No task with such ID found!");
-        }
-    }
+  public Task createTask(String description, User user) {
+    Task task = taskService.createTask(description, user);
+    System.out.println("Task created: \n" + task.getTaskDescription());
+    return task;
+  }
 
-    public void findAllUserTask(Long userId) {
-        for (Task t : taskService.findAllTasksByUserId(userId)) {
-            System.out.println(t.toString());
-        }
+  public void deleteTask(Long taskId) {
+    if (taskService.deleteTask(taskId)) {
+      System.out.println("Task successfully deleted!");
+    } else {
+      System.out.println("No task with such ID found!");
     }
+  }
 
-    public void subscribe(User user, String promoCode) {
-        userService.subscribe(user, promoCode);
+  public void findAllUserTask(Long userId) {
+    for (Task t : taskService.findAllTasksByUserId(userId)) {
+      System.out.println(t.toString());
     }
+  }
 
-    public void markTaskComplete(Long taskId) {
-        taskService.markTaskComplete(taskId);
-    }
+  public void subscribe(User user, String promoCode) {
+    userService.subscribe(user, promoCode);
+  }
 
-    public void markTaskNotComplete(Long taskId) {
-        taskService.markTaskNotComplete(taskId);
-    }
+  public void setTaskPriority(Long taskId, TaskPriority taskPriority) {
+    taskService.setTaskPriority(taskId, taskPriority);
+  }
+
+  public void markTaskComplete(Long taskId) {
+    taskService.markTaskComplete(taskId);
+  }
+
+  public void markTaskNotComplete(Long taskId) {
+    taskService.markTaskNotComplete(taskId);
+  }
 }
