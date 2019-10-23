@@ -63,6 +63,10 @@ public class UserController {
         }
     }
 
+    public void subscribe(User user, String promoCode) {
+        userService.subscribe(user, promoCode);
+    }
+
     public void markTaskComplete(Long taskId) {
         taskService.markTaskComplete(taskId);
     }

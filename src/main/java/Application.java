@@ -29,6 +29,8 @@ public class Application {
         userController.createTask("kuhv11111111111", user2);
         userController.findAllUserTask(user.getId());
 
+        userController.subscribe(user, "super");
+        userController.subscribe(user, "secret");
         userController.markTaskComplete(task.getTaskId());
 
         userController.findAllUserTask(user.getId());
