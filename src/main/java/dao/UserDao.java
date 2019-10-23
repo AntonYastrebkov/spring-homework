@@ -17,7 +17,6 @@ public class UserDao implements UserRepository {
         this.userIdCount = 1;
     }
 
-
     @Override
     public User saveUser(String name, String email, String number, String password) {
         User user = new User(userIdCount++, name, email, number, password, "");

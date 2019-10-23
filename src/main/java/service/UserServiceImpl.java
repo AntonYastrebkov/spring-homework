@@ -6,7 +6,6 @@ import entities.User;
 import exception.EmailExistsException;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
