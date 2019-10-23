@@ -8,5 +8,5 @@ public interface UserService {
 
     User signIn(String email, String password);
 
-    void subscribe(User user, String promoCode);
+    void subscribe(String userEmail, String promoCode);
 }

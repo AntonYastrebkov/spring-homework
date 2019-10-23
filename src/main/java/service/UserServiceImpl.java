@@ -44,19 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void subscribe(User user, String promoCode) {
-        String keyWord = "secret";
-        String subscriptionKey = DigestUtils.md5Hex(keyWord);
-        String promoCodeKey = DigestUtils.md5Hex(promoCode);
-        if(user.getSubscription().equals(subscriptionKey)){
-            System.out.println("Subscription already exists!");
-            return;
-        }
-        if(!subscriptionKey.equals(promoCodeKey)) {
-            System.out.println("Wrong promo code word, subscription denied!");
-            return;
-        }
-        user.setSubscription(subscriptionKey);
-        System.out.println("Subscription success!");
+    public void subscribe(String userEmail, String promoCode) {
+        userRepository.subscribe(userEmail, promoCode);
     }
 }
