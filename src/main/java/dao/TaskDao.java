@@ -1,12 +1,12 @@
 package dao;
 
 import entities.Task;
+import entities.TaskPriority;
 import entities.User;
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class TaskDao implements TaskRepository {
@@ -21,7 +21,8 @@ public class TaskDao implements TaskRepository {
 
     @Override
     public Task createTask(String description, User user) {
-        Task task = new Task(taskIdCount++, description, false, user.getId());
+        Task task = new Task(
+                taskIdCount++, description, false, user.getId(), TaskPriority.HIGH);
         taskList.add(task);
         return task;
     }
@@ -59,4 +60,10 @@ public class TaskDao implements TaskRepository {
                 .forEach(t -> t.setTaskComplete(false));
     }
 
+    @Override
+    public void setTaskPriority(Long id, TaskPriority taskPriority) {
+        taskList.stream().filter(t -> t.getTaskId()
+            .equals(id))
+            .forEach(t -> t.setPriority(taskPriority));
+    }
 }

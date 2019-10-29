@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.Objects;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +18,7 @@ public class Task {
     private String taskDescription;
     private Boolean taskComplete;
     private Long userId;
+    private TaskPriority priority = TaskPriority.MEDIUM;
 
     @Override
     public boolean equals(Object o) {
@@ -45,6 +45,7 @@ public class Task {
         return "Task: {id=" + taskId.toString() +
                 "description=\"" + taskDescription +
                 "\" completed=" + taskComplete +
-                " userID=" + userId.toString() + "}";
+                " userID=" + userId.toString() +
+                " priority=" + priority + "}";
     }
 }

@@ -1,9 +1,10 @@
 package dao;
 
 import entities.User;
-import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDao implements UserRepository {
@@ -16,10 +17,9 @@ public class UserDao implements UserRepository {
         this.userIdCount = 1;
     }
 
-
     @Override
     public User saveUser(String name, String email, String number, String password) {
-        User user = new User(userIdCount++, name, email, number, password);
+        User user = new User(userIdCount++, name, email, number, password, "");
         userList.add(user);
         return user;
     }
@@ -32,5 +32,12 @@ public class UserDao implements UserRepository {
             }
         }
         return null;
+    }
+
+    @Override
+    public void subscribe(String userEmail, String subscriptionKey) {
+        userList.stream()
+                .filter(u -> u.getEmail().equals(userEmail))
+                .forEach(u -> u.setSubscription(subscriptionKey));
     }
 }
