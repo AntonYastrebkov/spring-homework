@@ -1,52 +1,51 @@
 package entities;
 
+import java.util.Objects;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
+
+@Component
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
-  private Long id;
-  private String name;
-  private String email;
-  private String phoneNumber;
-  private String password;
+    private Long id;
+    private String name;
+    private String email;
+    private String phoneNumber;
+    private String password;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        User user = (User) o;
+        return Objects.equals(id, user.id) &&
+                Objects.equals(name, user.name) &&
+                Objects.equals(email, user.email) &&
+                Objects.equals(phoneNumber, user.phoneNumber) &&
+                Objects.equals(password, user.password);
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, phoneNumber, password);
+    }
 
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
-    this.phoneNumber = phoneNumber;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
+    @Override
+    public String toString() {
+        return "User: {id=" + id.toString() +
+                " name=" + name + " email=" + email +
+                " number=" + phoneNumber + "}";
+    }
 }
