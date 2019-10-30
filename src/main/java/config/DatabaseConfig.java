@@ -1,18 +1,22 @@
 package config;
 
-import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
+import org.h2.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
-import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
-@PropertySource("classpath:/db.properties")
+@Configuration
+@ComponentScan("config")
+@PropertySource("classpath:db.properties")
 public class DatabaseConfig {
 
   @Value("${url}")
@@ -21,24 +25,26 @@ public class DatabaseConfig {
   private String username;
   @Value("${password}")
   private String password;
-
-  @Value("classpath:/schema.sql")
+  @Value("classpath:schema.sql")
   private Resource schemaScript;
 
+  String schema = "classpath:schema.sql";
+
+  // "C:/Users/Zstudent/IdeaProjects/spring-homework/spring-homework/src/main/resources/db.properties"
+//"C:/Users/Zstudent/IdeaProjects/spring-homework/spring-homework/src/main/resources/schema.sql"
   @Bean
-  public DataSource hikariDatasource() {
-    HikariDataSource dataSource = new HikariDataSource();
-    dataSource.setJdbcUrl(url);
-    dataSource.setUsername(username);
+  public DataSource dataSource() {
+    SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+    dataSource.setDriver(new Driver());
+    dataSource.setUrl(url);
+    dataSource.setUsername("user");
     dataSource.setPassword(password);
-    dataSource.setMaximumPoolSize(10);
-    DatabasePopulatorUtils.execute(databasePopulator(), dataSource);
     return dataSource;
   }
 
   @Bean
   public DataSourceInitializer dataSourceInitializer(DataSource dataSource) {
-    final DataSourceInitializer initializer =  new DataSourceInitializer();
+    final DataSourceInitializer initializer = new DataSourceInitializer();
     initializer.setDataSource(dataSource);
     initializer.setDatabasePopulator(databasePopulator());
     return initializer;
@@ -46,12 +52,12 @@ public class DatabaseConfig {
 
   @Bean
   public JdbcTemplate jdbcTemplate() {
-    return new JdbcTemplate(hikariDatasource());
+    return new JdbcTemplate(dataSource());
   }
 
   private DatabasePopulator databasePopulator() {
     ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
     populator.addScript(schemaScript);
-    return  populator;
+    return populator;
   }
 }

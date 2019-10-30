@@ -3,7 +3,9 @@ package dao;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class JdbcUserRepository implements UserRepository {
 
   String INSERT = "insert into USERS (name, email, phoneNumber, password, subscription, userRole)"
