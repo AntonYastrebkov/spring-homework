@@ -19,8 +19,8 @@ public class UserController {
     this.userService = userService;
   }
 
-  public void adminCheck(User user) {
-    if(new SecurityService().isAdmin(user.getUserRole().name())) {
+  public void adminCheck(SecurityService service, User user) {
+    if(service.isAdmin(user.getUserRole().name())) {
       System.out.println("Welcome Admin!");
     } else {
       throw  new UserRoleException("Go AWAY!");

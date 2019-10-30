@@ -1,3 +1,4 @@
+import com.epam.security.SecurityService;
 import config.ApplicationConfig;
 import controller.TaskController;
 import controller.UserController;
@@ -15,7 +16,7 @@ public class Application {
 
     context.register(ApplicationConfig.class);
     context.refresh();
-
+    SecurityService service = context.getBean(SecurityService.class);
     UserController userController = context.getBean(UserController.class);
     TaskController taskController = context.getBean(TaskController.class);
     User user1 = new User(1l, "name", "email@dot.com", "+789456123", "password", "secret", UserRole.ORDINARY_USER);
@@ -40,7 +41,7 @@ public class Application {
     //taskController.findAllUserTask(user2.getId());
     taskController.markTaskComplete(3L);
     //taskController.findAllUserTask(user2.getId());
-    userController.adminCheck(user2);
-    userController.adminCheck(user);
+    userController.adminCheck(service, user2);
+    userController.adminCheck(service, user);
   }
 }
