@@ -10,3 +10,4 @@ public interface UserRepository {
 
     void subscribe(String userEmail, String promoCode);
 }
+

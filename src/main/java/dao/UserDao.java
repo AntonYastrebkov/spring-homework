@@ -1,6 +1,7 @@
 package dao;
 
 import entities.User;
+import entities.UserRole;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -19,7 +20,7 @@ public class UserDao implements UserRepository {
 
     @Override
     public User saveUser(String name, String email, String number, String password) {
-        User user = new User(userIdCount++, name, email, number, password, "");
+        User user = new User(userIdCount++, name, email, number, password, "", UserRole.ORDINARY_USER);
         userList.add(user);
         return user;
     }
