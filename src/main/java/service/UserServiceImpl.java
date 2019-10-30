@@ -22,11 +22,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerNewUser(String name, String email, String number, String password) {
-        if (userRepository.findUserByEmail(email) != null) {
+    public void registerNewUser(User user) {
+        if (userRepository.findUserByEmail(user.getEmail()) != null) {
             throw new EmailExistsException("This email is already in use");
         }
-        if (userRepository.saveUser(name, email, number, password) == null) {
+        if (userRepository.saveUser(user) == null) {
             throw new RuntimeException("DAO exception");
         }
     }

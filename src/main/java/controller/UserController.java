@@ -20,9 +20,9 @@ public class UserController {
     this.userService = userService;
   }
 
-  public void singUp(String name, String email, String number, String password) {
+  public void singUp(User user) {
     try {
-      userService.registerNewUser(name, email, number, password);
+      userService.registerNewUser(user);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
     }

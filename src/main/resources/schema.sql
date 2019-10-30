@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS  USERS (
-    id int PRIMARY KEY,
+    id int PRIMARY KEY AUTO_INCREMENT,
     name varchar(255),
     email varchar(255),
     phoneNumber varchar(255),

@@ -4,7 +4,7 @@ import entities.User;
 
 public interface UserService {
 
-    void registerNewUser(String name, String email, String number, String password);
+    void registerNewUser(User user);
 
     User signIn(String email, String password);
 
