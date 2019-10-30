@@ -41,5 +41,6 @@ public class Application {
     //taskController.findAllUserTask(user2.getId());
     taskController.markTaskComplete(3L);
     //taskController.findAllUserTask(user2.getId());
+    userController.adminCheck(user2);
   }
 }

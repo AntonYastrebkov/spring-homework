@@ -1,7 +1,9 @@
 package controller;
 
+import com.epam.security.SecurityService;
 import entities.User;
 import exception.UserNotFoundException;
+import exception.UserRoleException;
 import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,15 @@ public class UserController {
   @Autowired
   public UserController(UserService userService) {
     this.userService = userService;
+  }
+
+  public void adminCheck(User user) {
+    if(new SecurityService().isAdmin(user.getUserRole().name())) {
+      System.out.println("Welcome Admin!");
+    } else {
+      throw  new UserRoleException("Go AWAY!");
+    }
+
   }
 
   public void singUp(User user) {

@@ -6,6 +6,7 @@
 
   <groupId>com.spring-october.homework</groupId>
   <artifactId>homework</artifactId>
+  <packaging>pom</packaging>
   <version>1.0-SNAPSHOT</version>
 
   <build>
@@ -35,11 +36,18 @@
       </plugins>
     </pluginManagement>
   </build>
-
-
+  <modules>
+    <module>security</module>
+  </modules>
 
 
   <dependencies>
+
+    <dependency>
+      <groupId>com.epam.security</groupId>
+      <artifactId>security</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
 
     <dependency>
       <groupId>javax.servlet</groupId>
