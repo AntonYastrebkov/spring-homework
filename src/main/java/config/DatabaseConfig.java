@@ -15,7 +15,7 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @Configuration
-@ComponentScan("config")
+@ComponentScan("com.*")
 @PropertySource("classpath:db.properties")
 public class DatabaseConfig {
 
@@ -27,8 +27,6 @@ public class DatabaseConfig {
   private String password;
   @Value("classpath:schema.sql")
   private Resource schemaScript;
-
-  String schema = "classpath:schema.sql";
 
   @Bean
   public DataSource dataSource() {
