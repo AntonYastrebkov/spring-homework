@@ -1,13 +1,10 @@
 package controller;
 
-import entities.Task;
-import entities.TaskPriority;
 import entities.User;
 import exception.UserNotFoundException;
 import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import service.TaskService;
 import service.UserService;
 
 @Component

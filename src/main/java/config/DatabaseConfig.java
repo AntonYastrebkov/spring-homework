@@ -30,8 +30,6 @@ public class DatabaseConfig {
 
   String schema = "classpath:schema.sql";
 
-  // "C:/Users/Zstudent/IdeaProjects/spring-homework/spring-homework/src/main/resources/db.properties"
-//"C:/Users/Zstudent/IdeaProjects/spring-homework/spring-homework/src/main/resources/schema.sql"
   @Bean
   public DataSource dataSource() {
     SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
