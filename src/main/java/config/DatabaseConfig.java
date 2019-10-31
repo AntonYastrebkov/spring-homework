@@ -21,7 +21,7 @@ public class DatabaseConfig {
 
   @Value("${url}")
   private String url;
-  @Value("${username}")
+  @Value("${db.user}")
   private String username;
   @Value("${password}")
   private String password;
@@ -33,7 +33,7 @@ public class DatabaseConfig {
     SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
     dataSource.setDriver(new Driver());
     dataSource.setUrl(url);
-    dataSource.setUsername("user");
+    dataSource.setUsername(username);
     dataSource.setPassword(password);
     return dataSource;
   }
