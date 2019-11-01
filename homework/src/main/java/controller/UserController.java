@@ -1,13 +1,12 @@
 package controller;
 
-import entities.Task;
-import entities.TaskPriority;
+import com.epam.security.SecurityService;
 import entities.User;
 import exception.UserNotFoundException;
+import exception.UserRoleException;
 import exception.WrongPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import service.TaskService;
 import service.UserService;
 
 @Component
@@ -20,9 +19,18 @@ public class UserController {
     this.userService = userService;
   }
 
-  public void singUp(String name, String email, String number, String password) {
+  public void adminCheck(SecurityService service, User user) {
+    if(service.isAdmin(user.getUserRole().name())) {
+      System.out.println("Welcome Admin!");
+    } else {
+      throw  new UserRoleException("Go AWAY!");
+    }
+
+  }
+
+  public void singUp(User user) {
     try {
-      userService.registerNewUser(name, email, number, password);
+      userService.registerNewUser(user);
     } catch (RuntimeException e) {
       System.out.println(e.getMessage());
     }
