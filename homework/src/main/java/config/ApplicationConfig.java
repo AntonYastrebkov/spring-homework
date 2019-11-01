@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -15,9 +16,10 @@ import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 @Configuration
-@ComponentScan("com.*")
+@ComponentScan(basePackages = {"controller", "service", "dao", "entities", "aspect", "config", "com.epam.security.SecurityService"})
 @PropertySource("classpath:db.properties")
-public class DatabaseConfig {
+@EnableAspectJAutoProxy
+public class ApplicationConfig {
 
   @Value("${url}")
   private String url;
@@ -56,4 +58,5 @@ public class DatabaseConfig {
     populator.addScript(schemaScript);
     return populator;
   }
+
 }
