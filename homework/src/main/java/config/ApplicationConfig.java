@@ -3,11 +3,7 @@ package config;
 import javax.sql.DataSource;
 import org.h2.Driver;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
@@ -18,6 +14,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 @Configuration
 @ComponentScan(basePackages = {"controller", "service", "dao", "entities", "aspect", "config", "com.epam.security.SecurityService"})
 @PropertySource("classpath:db.properties")
+@ImportResource("configuration.xml")
 @EnableAspectJAutoProxy
 public class ApplicationConfig {
 

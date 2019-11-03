@@ -5,7 +5,6 @@ import entities.User;
 import exception.UserNotFoundException;
 import exception.UserRoleException;
 import exception.WrongPassword;
-import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +18,6 @@ public class UserController {
 
   private final UserService userService;
   private final SecurityService securityService;
-          ;
 
   @Autowired
   public UserController(UserService userService, SecurityService securityService) {
