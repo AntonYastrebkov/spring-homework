@@ -1,14 +1,18 @@
 package controller;
 
-
 import entities.Task;
 import entities.TaskPriority;
 import entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import service.TaskService;
 
-@Component
+@RestController
+@RequestMapping("/task")
 public class TaskController {
 
   private final TaskService taskService;
@@ -18,18 +22,22 @@ public class TaskController {
     this.taskService = taskService;
   }
 
-  public void setTaskPriority(Long taskId, TaskPriority taskPriority) {
+  @PostMapping("/{taskId}/change-priority")
+  public void setTaskPriority(@PathVariable Long taskId, TaskPriority taskPriority) {
     taskService.setTaskPriority(taskId, taskPriority);
   }
 
-  public void markTaskComplete(Long taskId) {
+  @PostMapping("/{taskId}/complete")
+  public void markTaskComplete(@PathVariable Long taskId) {
     taskService.markTaskComplete(taskId);
   }
 
-  public void markTaskNotComplete(Long taskId) {
+  @PostMapping("/{taskId}/not-complete")
+  public void markTaskNotComplete(@PathVariable Long taskId) {
     taskService.markTaskNotComplete(taskId);
   }
 
+  @PostMapping("/create")
   public Task createTask(String description, User user) {
     Task task = taskService.createTask(description, user);
     System.out.println("Task created: \n" + task.getTaskDescription());

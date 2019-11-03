@@ -17,8 +17,8 @@ public class Application {
   public static void main(String[] args) {
     AnnotationConfigApplicationContext context =
         new AnnotationConfigApplicationContext();
-    ClassPathXmlApplicationContext xmlContext = new ClassPathXmlApplicationContext("configuration.xml");
-    SecurityService service = xmlContext.getBean(SecurityService.class);
+//    ClassPathXmlApplicationContext xmlContext = new ClassPathXmlApplicationContext("configuration.xml");
+//    SecurityService service = xmlContext.getBean(SecurityService.class);
     context.register(ApplicationConfig.class);
     context.refresh();
     UserController userController = context.getBean(UserController.class);
@@ -40,7 +40,7 @@ public class Application {
 
     taskController.findAllUserTask(user.getId());
     taskController.markTaskComplete(3L);
-    userController.adminCheck(service, user2);
-    userController.adminCheck(service, user);
+    userController.adminCheck(user2);
+    userController.adminCheck(user);
   }
 }

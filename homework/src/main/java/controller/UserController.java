@@ -5,22 +5,31 @@ import entities.User;
 import exception.UserNotFoundException;
 import exception.UserRoleException;
 import exception.WrongPassword;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import service.UserService;
 
-@Component
+@RestController
+@RequestMapping("/user")
 public class UserController {
 
   private final UserService userService;
+  private final SecurityService securityService;
+          ;
 
   @Autowired
-  public UserController(UserService userService) {
+  public UserController(UserService userService, SecurityService securityService) {
     this.userService = userService;
+      this.securityService = securityService;
   }
 
-  public void adminCheck(SecurityService service, User user) {
-    if(service.isAdmin(user.getUserRole().name())) {
+  @GetMapping("/admin")
+  public void adminCheck(User user) {
+    if(securityService.isAdmin(user.getUserRole().name())) {
       System.out.println("Welcome Admin!");
     } else {
       throw  new UserRoleException("Go AWAY!");
@@ -28,6 +37,7 @@ public class UserController {
 
   }
 
+  @PostMapping("/sign-up")
   public void singUp(User user) {
     try {
       userService.registerNewUser(user);
@@ -37,6 +47,7 @@ public class UserController {
     System.out.println("User successfully signed up!");
   }
 
+  @PostMapping("/sign-in")
   public User singIn(String email, String password) {
     User user = null;
     try {
@@ -51,7 +62,7 @@ public class UserController {
     return user;
   }
 
-
+    @PostMapping("/subscribe")
   public void subscribe(String userEmail) {
     userService.subscribe(userEmail);
   }
