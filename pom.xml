@@ -12,6 +12,11 @@
     <module>homework</module>
     <module>security</module>
   </modules>
+
+  <properties>
+    <tomcat.version>8.5.23</tomcat.version>
+  </properties>
+
   <build>
     <plugins>
       <plugin>
