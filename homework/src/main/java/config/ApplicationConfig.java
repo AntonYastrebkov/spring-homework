@@ -14,7 +14,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 @Configuration
 @ComponentScan(basePackages = {"controller", "service", "dao", "entities", "aspect", "config", "com.epam.security.SecurityService"})
 @PropertySource("classpath:db.properties")
-@ImportResource("configuration.xml")
+@ImportResource("classpath:configuration.xml")
 @EnableAspectJAutoProxy
 public class ApplicationConfig {
 
