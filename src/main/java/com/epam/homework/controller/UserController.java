@@ -37,22 +37,13 @@ public class UserController {
 
     @PostMapping("/sign-up")
     public void singUp(User user) {
-        try {
-            userService.registerNewUser(user);
-        } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
-        }
+        userService.registerNewUser(user);
         System.out.println("User successfully signed up!");
     }
 
     @PostMapping("/sign-in")
     public User singIn(String email, String password) {
-        User user = null;
-        try {
-            user = userService.signIn(email, password);
-        } catch (UserNotFoundException | WrongPassword e) {
-            System.out.println(e.getMessage());
-        }
+        User user = userService.signIn(email, password);
         if (user != null) {
             System.out.println("User registered:");
             System.out.println(user.toString());
