@@ -3,7 +3,9 @@ package com.epam.homework.controller;
 import com.epam.homework.entity.Task;
 import com.epam.homework.entity.TaskPriority;
 import com.epam.homework.entity.User;
+import com.epam.homework.exception.SubscriptionException;
 import com.epam.homework.service.TaskService;
+import com.epam.homework.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,10 +17,12 @@ import java.io.IOException;
 public class TaskController {
 
     private final TaskService taskService;
+    private final UserService userService;
 
     @Autowired
-    public TaskController(TaskService taskService) {
+    public TaskController(TaskService taskService, UserService userService) {
         this.taskService = taskService;
+        this.userService = userService;
     }
 
     @PostMapping("/{taskId}/change-priority")
@@ -65,6 +69,9 @@ public class TaskController {
             @RequestParam MultipartFile file,
             User user
     ) throws IOException {
+        if (!userService.isSubscribed(user)) {
+            throw new SubscriptionException("Subscribe to upload files!");
+        }
         taskService.saveFile(id, file);
     }
 }

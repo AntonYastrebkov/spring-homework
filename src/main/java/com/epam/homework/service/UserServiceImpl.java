@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
+    private final String KEYWORD = "secret";
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
 
@@ -43,13 +44,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void subscribe(String userEmail) {
         User user = userRepository.findUserByEmail(userEmail);
-        String keyWord = "secret";
-        String subscriptionKey = DigestUtils.md5Hex(keyWord);
+        String subscriptionKey = DigestUtils.md5Hex(KEYWORD);
         if (user.getSubscription().equals(subscriptionKey)) {
             System.out.println("Subscription already exists!");
             return;
         }
 
         userRepository.subscribe(userEmail, subscriptionKey);
+    }
+
+    @Override
+    public boolean isSubscribed(User user) {
+        return DigestUtils.md5Hex(KEYWORD).equals(user.getSubscription());
     }
 }

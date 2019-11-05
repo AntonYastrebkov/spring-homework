@@ -15,27 +15,33 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(EmailExistsException.class)
-    public ResponseEntity userRoleHandler(EmailExistsException e) {
+    public ResponseEntity emailExistsHandler(EmailExistsException e) {
         System.out.println(e.getMessage());
         return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(TaskOverflowException.class)
-    public ResponseEntity userRoleHandler(TaskOverflowException e) {
+    public ResponseEntity taskOverflowHandler(TaskOverflowException e) {
         System.out.println(e.getMessage());
         return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity userRoleHandler(UserNotFoundException e) {
+    public ResponseEntity userNotFoundHandler(UserNotFoundException e) {
         System.out.println(e.getMessage());
         return new ResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(WrongPassword.class)
-    public ResponseEntity userRoleHandler(WrongPassword e) {
+    public ResponseEntity passwordHandler(WrongPassword e) {
         System.out.println(e.getMessage());
         return new ResponseEntity(e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(SubscriptionException.class)
+    public ResponseEntity subscriptionHandler(SubscriptionException e) {
+        System.out.println(e.getMessage());
+        return new ResponseEntity(e.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(Exception.class)
