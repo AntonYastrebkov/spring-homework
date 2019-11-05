@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4196d997-c6c0-4afd-8940-af33c5aa2bfd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/spring-homework.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/homework/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/homework/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/main/java/config/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/main/java/config/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/main/java/config/WebInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/main/java/config/WebInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/main/java/config/WebMvcConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/main/java/config/WebMvcConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/homework/src/main/java/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/homework/src/main/java/controller/HelloController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/security/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/security/security.iml" beforeDir="false" afterPath="$PROJECT_DIR$/security/security.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-homework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-homework.iml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,14 +35,22 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1RvH16H3SuFafGjppiJF3TE28MJ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="Update" />
+  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/homework/src/main/resources" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2816092" />
     <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zstudent\IdeaProjects\spring-homework\spring-homework\homework\src\main\resources" />
+      <recent name="C:\Users\Zstudent\IdeaProjects\spring-homework\spring-homework\homework\src\main" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -51,7 +64,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Tests">
+  <component name="RunManager" selected="JUnit.All in security">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application" />
       <module name="homework" />
@@ -59,18 +72,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in security" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="security" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="Tests" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Tests" />
+        <item itemvalue="JUnit.All in security" />
         <item itemvalue="Application.Application" />
         <item itemvalue="Application.Application" />
         <item itemvalue="Application.Application" />
