@@ -19,6 +19,7 @@ public class Task {
     private Boolean taskComplete;
     private Long userId;
     private TaskPriority priority = TaskPriority.MEDIUM;
+    private String fileName;
 
     @Override
     public boolean equals(Object o) {

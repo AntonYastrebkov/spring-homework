@@ -5,10 +5,10 @@ import com.epam.homework.entity.TaskPriority;
 import com.epam.homework.entity.User;
 import com.epam.homework.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/task")
@@ -43,6 +43,7 @@ public class TaskController {
         return task;
     }
 
+    @DeleteMapping("/{taskId}/delete")
     public void deleteTask(Long taskId) {
         if (taskService.deleteTask(taskId)) {
             System.out.println("Task successfully deleted!");
@@ -51,10 +52,19 @@ public class TaskController {
         }
     }
 
-    public void findAllUserTask(Long userId) {
+    @GetMapping("/{userId}/all")
+    public void findAllUserTask(@PathVariable Long userId) {
         for (Task t : taskService.findAllTasksByUserId(userId)) {
             System.out.println(t.toString());
         }
     }
 
+    @PostMapping("/{id}/upload")
+    public void uploadFile(
+            @PathVariable Long id,
+            @RequestParam MultipartFile file,
+            User user
+    ) throws IOException {
+        taskService.saveFile(id, file);
+    }
 }

@@ -23,7 +23,7 @@ public class TaskDao implements TaskRepository {
     @Override
     public Task createTask(String description, User user) {
         Task task = new Task(
-                taskIdCount++, description, false, user.getId(), TaskPriority.HIGH);
+                taskIdCount++, description, false, user.getId(), TaskPriority.HIGH, "");
         taskList.add(task);
         return task;
     }
@@ -66,5 +66,12 @@ public class TaskDao implements TaskRepository {
         taskList.stream().filter(t -> t.getTaskId()
                 .equals(id))
                 .forEach(t -> t.setPriority(taskPriority));
+    }
+
+    @Override
+    public Task findTaskById(Long id) {
+        return taskList.stream()
+                .filter(t -> t.getTaskId().equals(id))
+                .findAny().get();
     }
 }
