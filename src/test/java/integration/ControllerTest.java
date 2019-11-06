@@ -1,13 +1,14 @@
 package integration;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+
 import com.epam.homework.config.ApplicationConfig;
 import com.epam.homework.config.SwaggerConfig;
 import com.epam.homework.config.WebInitializer;
 import com.epam.homework.controller.TaskController;
 import com.epam.homework.controller.UserController;
-import com.epam.homework.entity.Task;
-import com.epam.homework.entity.User;
-import com.epam.homework.entity.UserRole;
 import javax.servlet.ServletContext;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,7 +20,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -31,6 +33,8 @@ public class ControllerTest {
   @Autowired
   private WebApplicationContext wac;
   private MockMvc mockMvc;
+  private static final String CONTENT_TYPE = "text/plain;charset=ISO-8859-1";
+
 
   @Before
   public void setup() throws Exception {
@@ -44,6 +48,16 @@ public class ControllerTest {
     Assert.assertTrue(servletContext instanceof MockServletContext);
     Assert.assertNotNull(wac.getBean(UserController.class));
     Assert.assertNotNull(wac.getBean(TaskController.class));
+  }
+
+  @Test
+  public void helloPageTest() throws Exception {
+    final MvcResult mvcResult = mockMvc.perform(get("/hello"))
+        .andDo(print())
+        .andExpect(MockMvcResultMatchers.status().isOk())
+        .andExpect(content().string("Hello from server!"))
+        .andReturn();
+    Assert.assertEquals(CONTENT_TYPE, mvcResult.getResponse().getContentType());
   }
 
 }
