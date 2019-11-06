@@ -43,5 +43,5 @@ public class JdbcUserRepository implements UserRepository {
         jdbcTemplate.update(UPDATE_SUBSCRIPTION, promoCode, userEmail);
     }
 
-    
+
 }

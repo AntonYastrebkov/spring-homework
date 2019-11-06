@@ -4,7 +4,9 @@ import com.epam.homework.dao.TaskRepository;
 import com.epam.homework.dao.UserRepository;
 import com.epam.homework.entity.User;
 import com.epam.homework.exception.UserNotFoundException;
+import com.epam.homework.exception.UserRoleException;
 import com.epam.homework.exception.WrongPassword;
+import com.epam.security.SecurityService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,14 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final TaskRepository taskRepository;
+    private final SecurityService securityService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, TaskRepository taskRepository) {
+    public UserServiceImpl(UserRepository userRepository, TaskRepository taskRepository,
+        SecurityService securityService) {
         this.userRepository = userRepository;
         this.taskRepository = taskRepository;
+        this.securityService = securityService;
     }
 
     @Override
@@ -51,5 +56,16 @@ public class UserServiceImpl implements UserService {
         }
 
         userRepository.subscribe(userEmail, subscriptionKey);
+    }
+
+    @Override
+    public boolean isAdmin(String userEmail) {
+        User user = userRepository.findUserByEmail(userEmail);
+        if(securityService.isAdmin(user.getUserRole().name())) {
+            System.out.println("Welcome Admin!");
+            return true;
+        } else {
+            throw  new UserRoleException("Go AWAY!");
+        }
     }
 }

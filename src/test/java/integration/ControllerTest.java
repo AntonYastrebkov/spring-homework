@@ -102,25 +102,14 @@ public class ControllerTest {
   @Test
   public void userAdminCheckerTest() throws Exception {
     mockMvc.perform(get("/user/admin")
-        .param("id", "2")
-        .param("name", "Not Anton")
-        .param("email", "email@email.com")
-        .param("phoneNumber", "+79113585555")
-        .param("password", "password")
-        .param("subscription", "asdsdas")
-        .param("userRole", UserRole.ADMIN_USER.name())).andExpect(status().isOk());
+        .param("email", "email@email.com"))
+        .andExpect(status().isOk());
   }
 
   @Test(expected = NestedServletException.class)
   public void userNotAdminCheckerTest() throws Exception {
     mockMvc.perform(get("/user/admin")
-        .param("id", "1")
-        .param("name", "Anton")
-        .param("email", "email@dot.com")
-        .param("phoneNumber", "+789456123")
-        .param("password", "password")
-        .param("subscription", "secret")
-        .param("userRole", UserRole.ORDINARY_USER.name()));
+        .param("email", "email@dot.com"));
   }
 
 }
