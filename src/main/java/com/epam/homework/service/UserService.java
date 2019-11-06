@@ -1,6 +1,7 @@
 package com.epam.homework.service;
 
 import com.epam.homework.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
 
@@ -15,5 +16,9 @@ public interface UserService {
     boolean isSubscribed(String userEmail);
 
     boolean isAdmin(String  userEmail);
+
+    void uploadFile(String userEmail, MultipartFile file);
+
+
 
 }
