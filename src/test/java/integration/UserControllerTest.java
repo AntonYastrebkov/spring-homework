@@ -32,7 +32,7 @@ import org.springframework.web.util.NestedServletException;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {ApplicationConfig.class, SwaggerConfig.class, WebInitializer.class})
 @WebAppConfiguration
-public class ControllerTest {
+public class UserControllerTest {
 
   @Autowired
   private WebApplicationContext wac;

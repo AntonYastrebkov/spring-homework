@@ -10,6 +10,10 @@ public interface UserService {
 
     void subscribe(String userEmail);
 
+    void unsubscribe(String userEmail);
+
+    boolean isSubscribed(String userEmail);
+
     boolean isAdmin(String  userEmail);
 
 }

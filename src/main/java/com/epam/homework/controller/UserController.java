@@ -56,4 +56,9 @@ public class UserController {
   public void subscribe(String userEmail) {
     userService.subscribe(userEmail);
   }
+
+  @PostMapping("/unsubscribe")
+  public void unsubscribe(String userEmail) {
+    userService.unsubscribe(userEmail);
+  }
 }

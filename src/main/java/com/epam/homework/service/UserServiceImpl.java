@@ -54,8 +54,26 @@ public class UserServiceImpl implements UserService {
             System.out.println("Subscription already exists!");
             return;
         }
-
         userRepository.subscribe(userEmail, subscriptionKey);
+    }
+
+    @Override
+    public void unsubscribe(String userEmail) {
+        User user = userRepository.findUserByEmail(userEmail);
+        userRepository.subscribe(userEmail, "NOT_SUBSCRIBED");
+    }
+
+    @Override
+    public boolean isSubscribed(String userEmail) {
+        User user = userRepository.findUserByEmail(userEmail);
+        String keyWord = "secret";
+        String subscriptionKey = DigestUtils.md5Hex(keyWord);
+        if (user.getSubscription().equals(subscriptionKey)) {
+            System.out.println("User is subscribed");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
