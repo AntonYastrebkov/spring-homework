@@ -29,17 +29,17 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public User signIn(String email, String password) {
-        User user = userRepository.findUserByEmail(email);
-        if (user == null) {
-            throw new UserNotFoundException("Wrong email");
-        }
-        if (!user.getPassword().equals(password)) {
-            throw new WrongPassword("Wrong password");
-        }
-        return user;
+  @Override
+  public User signIn(String email, String password) {
+    User user = userRepository.findUserByEmail(email);
+    if (user == null) {
+      throw new UserNotFoundException("Wrong email");
     }
+    if (!user.getPassword().equals(password)) {
+      throw new WrongPassword("Wrong password");
+    }
+    return user;
+  }
 
     @Override
     public void subscribe(String userEmail) {

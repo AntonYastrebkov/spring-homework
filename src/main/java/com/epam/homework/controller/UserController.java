@@ -51,8 +51,22 @@ public class UserController {
         return user;
     }
 
-    @PostMapping("/subscribe")
-    public void subscribe(String userEmail) {
-        userService.subscribe(userEmail);
-    }
+  @PostMapping("/subscribe")
+  public void subscribe(String userEmail) {
+    userService.subscribe(userEmail);
+  }
+
+  @PostMapping("/unsubscribe")
+  public void unsubscribe(String userEmail) {
+    userService.unsubscribe(userEmail);
+  }
+
+
+  @PostMapping("/uploadFile")
+  public void uploadFile(
+      @RequestParam("file") MultipartFile multipartFile,
+      String email
+  ) {
+    userService.uploadFile(email, multipartFile);
+  }
 }

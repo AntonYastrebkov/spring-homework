@@ -42,4 +42,6 @@ public class JdbcUserRepository implements UserRepository {
     public void subscribe(String userEmail, String promoCode) {
         jdbcTemplate.update(UPDATE_SUBSCRIPTION, promoCode, userEmail);
     }
+
+
 }

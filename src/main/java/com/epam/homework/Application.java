@@ -36,7 +36,7 @@ public class Application {
 
     taskController.findAllUserTask(user.getId());
     taskController.markTaskComplete(3L);
-    userController.adminCheck(user2);
-    userController.adminCheck(user);
+    userController.adminCheck("email@dot.com");
+    userController.adminCheck("email2@dot.com");
     }
 }
