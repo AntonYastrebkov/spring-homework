@@ -1,6 +1,7 @@
 package com.epam.homework.controller;
 
 import com.epam.homework.entity.User;
+import com.epam.homework.entity.UserDto;
 import com.epam.homework.exception.UserNotFoundException;
 import com.epam.homework.exception.UserRoleException;
 import com.epam.homework.exception.WrongPassword;
@@ -36,14 +37,13 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public void singUp(User user) {
-        userService.registerNewUser(user);
-        System.out.println("User successfully signed up!");
+    public User singUp(UserDto userDto) {
+        return userService.registerNewUser(userDto);
     }
 
     @PostMapping("/sign-in")
-    public User singIn(String email, String password) {
-        User user = userService.signIn(email, password);
+    public User singIn(UserDto userDto) {
+        User user = userService.signIn(userDto);
         if (user != null) {
             System.out.println("User registered:");
             System.out.println(user.toString());
@@ -56,17 +56,17 @@ public class UserController {
     userService.subscribe(userEmail);
   }
 
-  @PostMapping("/unsubscribe")
-  public void unsubscribe(String userEmail) {
-    userService.unsubscribe(userEmail);
-  }
-
-
-  @PostMapping("/uploadFile")
-  public void uploadFile(
-      @RequestParam("file") MultipartFile multipartFile,
-      String email
-  ) {
-    userService.uploadFile(email, multipartFile);
-  }
+//  @PostMapping("/unsubscribe")
+//  public void unsubscribe(String userEmail) {
+//    userService.unsubscribe(userEmail);
+//  }
+//
+//
+//  @PostMapping("/uploadFile")
+//  public void uploadFile(
+//      @RequestParam("file") MultipartFile multipartFile,
+//      String email
+//  ) {
+//    userService.uploadFile(email, multipartFile);
+//  }
 }

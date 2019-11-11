@@ -8,21 +8,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-@Component
+import javax.persistence.*;
+
+@Entity(name = "users")
 @Builder
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String email;
     private String phoneNumber;
     private String password;
     private String subscription;
-    UserRole userRole = UserRole.ORDINARY_USER;
+    @Enumerated(EnumType.STRING)
+    private UserRole userRole = UserRole.ORDINARY_USER;
 
     @Override
     public boolean equals(Object o) {

@@ -1,12 +1,13 @@
 package com.epam.homework.service;
 
 import com.epam.homework.entity.User;
+import com.epam.homework.entity.UserDto;
 
 public interface UserService {
 
-    void registerNewUser(User user);
+    User registerNewUser(UserDto userDto);
 
-    User signIn(String email, String password);
+    User signIn(UserDto userDto);
 
     void subscribe(String userEmail);
 

@@ -3,6 +3,7 @@ package com.epam.homework.service;
 import com.epam.homework.dao.TaskRepository;
 import com.epam.homework.dao.UserRepository;
 import com.epam.homework.entity.User;
+import com.epam.homework.entity.UserDto;
 import com.epam.homework.exception.UserNotFoundException;
 import com.epam.homework.exception.WrongPassword;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -23,19 +24,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void registerNewUser(User user) {
-        if (userRepository.saveUser(user) == null) {
+    public User registerNewUser(UserDto userDto) {
+        User user = new User().builder()
+                .email(userDto.getEmail())
+                .name(userDto.getName())
+                .password(userDto.getPassword())
+                .phoneNumber(userDto.getNumber())
+                .build();
+        if (userRepository.save(user) == null) {
             throw new RuntimeException("DAO exception");
         }
+        return user;
     }
 
   @Override
-  public User signIn(String email, String password) {
-    User user = userRepository.findUserByEmail(email);
+  public User signIn(UserDto userDto) {
+    User user = userRepository.findByEmail(userDto.getEmail());
     if (user == null) {
       throw new UserNotFoundException("Wrong email");
     }
-    if (!user.getPassword().equals(password)) {
+    if (!userDto.getPassword().equals(user.getPassword())) {
       throw new WrongPassword("Wrong password");
     }
     return user;
@@ -43,14 +51,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void subscribe(String userEmail) {
-        User user = userRepository.findUserByEmail(userEmail);
+        User user = userRepository.findByEmail(userEmail);
         String subscriptionKey = DigestUtils.md5Hex(KEYWORD);
         if (user.getSubscription().equals(subscriptionKey)) {
             System.out.println("Subscription already exists!");
             return;
         }
-
-        userRepository.subscribe(userEmail, subscriptionKey);
+        user.setSubscription(subscriptionKey);
+        userRepository.save(user);
     }
 
     @Override

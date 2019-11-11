@@ -1,12 +1,13 @@
 package com.epam.homework.dao;
 
 import com.epam.homework.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    User saveUser(User user);
+    // User saveUser(User user);
 
-    User findUserByEmail(String email);
+    User findByEmail(String email);
 
-    void subscribe(String userEmail, String promoCode);
+    // void subscribe(String userEmail, String promoCode);
 }
