@@ -21,11 +21,11 @@ import java.util.Properties;
 
 @Configuration
 // @ComponentScan(basePackages = {"com.epam.homework", "com.epam.security.SecurityService"})
-@ImportResource("file:SecurityModule/src/main/resources/configuration.xml")
+//@ImportResource("file:SecurityModule/src/main/resources/configuration.xml")
 // @PropertySource(value = "file:src/main/resources/database.properties")
 //@EnableAspectJAutoProxy
 //@EnableJpaRepositories(basePackages = "com.epam.homework.dao")
-@PropertySource(value = "file:src/main/resources/application.properties")
+@PropertySource(value = "classpath:application.properties")
 public class ApplicationConfig {
 
 //    @Value("${url}")
