@@ -10,7 +10,8 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
-@Entity(name = "users")
+@Entity
+@Table(name = "not_users")
 @Builder
 @Setter
 @Getter

@@ -4,6 +4,7 @@ import com.epam.homework.dao.TaskRepository;
 import com.epam.homework.dao.UserRepository;
 import com.epam.homework.entity.User;
 import com.epam.homework.entity.UserDto;
+import com.epam.homework.entity.UserRole;
 import com.epam.homework.exception.UserNotFoundException;
 import com.epam.homework.exception.WrongPassword;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -30,6 +31,8 @@ public class UserServiceImpl implements UserService {
                 .name(userDto.getName())
                 .password(userDto.getPassword())
                 .phoneNumber(userDto.getNumber())
+                .userRole(UserRole.ORDINARY_USER)
+                .subscription("")
                 .build();
         if (userRepository.save(user) == null) {
             throw new RuntimeException("DAO exception");

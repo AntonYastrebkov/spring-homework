@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
-    private final String UPLOAD_PATH = "/C:/Users/Munchausen/IdeaProjects/com-epam.homework/uploads";
+    private final String UPLOAD_PATH = "/C:/Users/Munchausen/IdeaProjects/com-epam-homework/uploads";
 
     @Autowired
     public TaskServiceImpl(TaskRepository taskRepository) {

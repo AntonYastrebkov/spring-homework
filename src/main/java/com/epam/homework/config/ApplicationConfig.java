@@ -23,9 +23,10 @@ import java.util.Properties;
 // @ComponentScan(basePackages = {"com.epam.homework", "com.epam.security.SecurityService"})
 @ImportResource("file:SecurityModule/src/main/resources/configuration.xml")
 // @PropertySource(value = "file:src/main/resources/database.properties")
-@EnableAspectJAutoProxy
-@EnableJpaRepositories(basePackages = "com.epam.homework.dao")
-public class ApplicationConfig extends WebMvcConfigurationSupport {
+//@EnableAspectJAutoProxy
+//@EnableJpaRepositories(basePackages = "com.epam.homework.dao")
+@PropertySource(value = "file:src/main/resources/application.properties")
+public class ApplicationConfig {
 
 //    @Value("${url}")
 //    private String url;
@@ -160,9 +161,10 @@ public class ApplicationConfig extends WebMvcConfigurationSupport {
 //        return populator;
 //    }
 
-    @Bean
-    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-        return new PropertySourcesPlaceholderConfigurer();
-    }
+//    @Bean
+//    public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+//        System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAA");
+//        return new PropertySourcesPlaceholderConfigurer();
+//    }
 
 }
