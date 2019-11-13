@@ -3,20 +3,22 @@ package com.epam.homework.dao;
 import com.epam.homework.entity.Task;
 import com.epam.homework.entity.TaskPriority;
 import com.epam.homework.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
-public interface TaskRepository {
-    Task createTask(String description, User user);
+public interface TaskRepository extends JpaRepository<Task, Long> {
+//    Task createTask(String description, User user);
 
-    Task findTaskById(Long id);
+//    Task findById(Long id);
 
-    boolean deleteTaskById(Long taskId);
+//     deleteById(Long taskId);
 
-    List<Task> findAllTaskByUserId(Long userId);
+    List<Task> findAllByUserId(Long userId);
 
-    void setTaskPriority(Long id, TaskPriority taskPriority);
-
-    void markTaskAsComplete(Long taskId);
-
-    void markTaskAsNotComplete(Long taskId);
+//    void setTaskPriority(Long id, TaskPriority taskPriority);
+//
+//    void markTaskAsComplete(Long taskId);
+//
+//    void markTaskAsNotComplete(Long taskId);
 }

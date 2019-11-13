@@ -1,62 +1,78 @@
 package com.epam.homework.service;
 
 import com.epam.homework.dao.TaskRepository;
+import com.epam.homework.dao.UserRepository;
 import com.epam.homework.entity.Task;
 import com.epam.homework.entity.TaskPriority;
-import com.epam.homework.entity.User;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
+import com.epam.homework.entity.UserDto;
+import com.epam.homework.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
-    private final String UPLOAD_PATH = "/C:/Users/Munchausen/IdeaProjects/com-epam-homework/uploads";
+    private final UserRepository userRepository;
+    @Value("${upload.path}")
+    private String UPLOAD_PATH; // = "/C:/Users/Munchausen/IdeaProjects/com-epam-homework/uploads";
 
     @Autowired
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
         this.taskRepository = taskRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public Task createTask(String description, User user) {
-        return taskRepository.createTask(description, user);
+    public Task createTask(String description, UserDto userDto) {
+
+        Task task = new Task().builder()
+                .taskDescription(description)
+                .priority(TaskPriority.MEDIUM)
+                .taskComplete(false)
+                .fileName("")
+                .user(userRepository.findByEmail(userDto.getEmail()))
+                .build();
+        return taskRepository.save(task);
     }
 
     @Override
-    public boolean deleteTask(Long id) {
-        return taskRepository.deleteTaskById(id);
+    public void deleteTask(Long id) {
+        taskRepository.deleteById(id);
     }
 
     @Override
     public List<Task> findAllTasksByUserId(Long userId) {
-        return taskRepository.findAllTaskByUserId(userId);
+        return taskRepository.findAllByUserId(userId);
     }
 
     @Override
-    public void setTaskPriority(Long taskId, TaskPriority taskPriority) {
-        taskRepository.setTaskPriority(taskId, taskPriority);
+    public Task setTaskPriority(Long taskId, TaskPriority taskPriority) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new EntityNotFoundException("No task found!"));
+        task.setPriority(taskPriority);
+        return taskRepository.save(task);
     }
 
     @Override
-    public void markTaskComplete(Long taskId) {
-        taskRepository.markTaskAsComplete(taskId);
+    public Task markTaskComplete(Long taskId, Boolean completed) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new EntityNotFoundException("No task found!"));
+        task.setTaskComplete(completed);
+        return taskRepository.save(task);
     }
 
     @Override
-    public void markTaskNotComplete(Long taskId) {
-        taskRepository.markTaskAsNotComplete(taskId);
-    }
-
-    @Override
-    public void saveFile(Long taskId, MultipartFile file) throws IOException {
-        Task task = taskRepository.findTaskById(taskId);
+    public Task saveFile(Long taskId, MultipartFile file) throws IOException {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new EntityNotFoundException("Task not fount!"));
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             File destination = new File(UPLOAD_PATH);
             if (!destination.exists()) {
@@ -67,6 +83,8 @@ public class TaskServiceImpl implements TaskService {
                     + file.getOriginalFilename();
             file.transferTo(new File(UPLOAD_PATH + "/" + filename));
             task.setFileName(filename);
+            task = taskRepository.save(task);
         }
+        return task;
     }
 }

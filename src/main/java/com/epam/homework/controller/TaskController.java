@@ -3,6 +3,7 @@ package com.epam.homework.controller;
 import com.epam.homework.entity.Task;
 import com.epam.homework.entity.TaskPriority;
 import com.epam.homework.entity.User;
+import com.epam.homework.entity.UserDto;
 import com.epam.homework.exception.SubscriptionException;
 import com.epam.homework.service.TaskService;
 import com.epam.homework.service.UserService;
@@ -32,28 +33,24 @@ public class TaskController {
 
     @PostMapping("/{taskId}/complete")
     public void markTaskComplete(@PathVariable Long taskId) {
-        taskService.markTaskComplete(taskId);
+        taskService.markTaskComplete(taskId, true);
     }
 
     @PostMapping("/{taskId}/not-complete")
     public void markTaskNotComplete(@PathVariable Long taskId) {
-        taskService.markTaskNotComplete(taskId);
+        taskService.markTaskComplete(taskId, false);
     }
 
     @PostMapping("/create")
-    public Task createTask(String description, User user) {
-        Task task = taskService.createTask(description, user);
+    public Task createTask(String description, UserDto userDto) {
+        Task task = taskService.createTask(description, userDto);
         System.out.println("Task created: \n" + task.getTaskDescription());
         return task;
     }
 
     @DeleteMapping("/{taskId}/delete")
     public void deleteTask(Long taskId) {
-        if (taskService.deleteTask(taskId)) {
-            System.out.println("Task successfully deleted!");
-        } else {
-            System.out.println("No task with such ID found!");
-        }
+        taskService.deleteTask(taskId);
     }
 
     @GetMapping("/{userId}/all")
@@ -64,14 +61,14 @@ public class TaskController {
     }
 
     @PostMapping("/{id}/upload")
-    public void uploadFile(
+    public Task uploadFile(
             @PathVariable Long id,
             @RequestParam MultipartFile file,
-            User user
+            UserDto userDto
     ) throws IOException {
-        if (!userService.isSubscribed(user)) {
+        if (!userService.isSubscribed(userDto)) {
             throw new SubscriptionException("Subscribe to upload files!");
         }
-        taskService.saveFile(id, file);
+        return taskService.saveFile(id, file);
     }
 }

@@ -65,7 +65,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean isSubscribed(User user) {
+    public boolean isSubscribed(UserDto userDto) {
+        User user = userRepository.findByEmail(userDto.getEmail());
         return DigestUtils.md5Hex(KEYWORD).equals(user.getSubscription());
     }
 }

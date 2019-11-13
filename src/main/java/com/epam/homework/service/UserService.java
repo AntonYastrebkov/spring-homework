@@ -11,5 +11,5 @@ public interface UserService {
 
     void subscribe(String userEmail);
 
-    boolean isSubscribed(User user);
+    boolean isSubscribed(UserDto userDto);
 }

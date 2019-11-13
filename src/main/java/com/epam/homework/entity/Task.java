@@ -1,23 +1,28 @@
 package com.epam.homework.entity;
 
 import java.util.Objects;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
 import org.springframework.stereotype.Component;
 
-@Component
+import javax.persistence.*;
+
+@Entity
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long taskId;
     private String taskDescription;
     private Boolean taskComplete;
-    private Long userId;
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private User user;
+    @Enumerated(EnumType.STRING)
     private TaskPriority priority = TaskPriority.MEDIUM;
     private String fileName;
 
@@ -33,12 +38,12 @@ public class Task {
         return Objects.equals(taskId, task.taskId) &&
                 Objects.equals(taskDescription, task.taskDescription) &&
                 Objects.equals(taskComplete, task.taskComplete) &&
-                Objects.equals(userId, task.userId);
+                Objects.equals(user.getId(), task.getUser().getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(taskId, taskDescription, taskComplete, userId);
+        return Objects.hash(taskId, taskDescription, taskComplete, user.getId());
     }
 
     @Override
@@ -46,7 +51,7 @@ public class Task {
         return "Task: {id=" + taskId.toString() +
                 "description=\"" + taskDescription +
                 "\" completed=" + taskComplete +
-                " userID=" + userId.toString() +
+                " userID=" + user.getId().toString() +
                 " priority=" + priority + "}";
     }
 }
