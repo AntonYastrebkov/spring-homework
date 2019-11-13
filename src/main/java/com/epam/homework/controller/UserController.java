@@ -2,11 +2,9 @@ package com.epam.homework.controller;
 
 import com.epam.homework.entity.User;
 import com.epam.homework.entity.UserDto;
-import com.epam.homework.exception.UserNotFoundException;
+import com.epam.homework.entity.UserRole;
 import com.epam.homework.exception.UserRoleException;
-import com.epam.homework.exception.WrongPassword;
 import com.epam.homework.service.UserService;
-import com.epam.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,17 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
-    private final SecurityService securityService;
 
     @Autowired
-    public UserController(UserService userService, SecurityService securityService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.securityService = securityService;
     }
 
     @GetMapping("/admin")
     public void adminCheck(User user) {
-        if(securityService.isAdmin(user.getUserRole().name())) {
+        if(user.getUserRole().equals(UserRole.ADMIN_USER)) {
             System.out.println("Welcome Admin!");
         } else {
             throw  new UserRoleException("Go AWAY!");
