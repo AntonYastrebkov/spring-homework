@@ -1,7 +1,9 @@
 package com.epam.homework.config;
 
+import com.epam.security.service.SecurityService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -32,5 +34,12 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
+    }
+
+    @Bean
+    public SecurityService securityService() {
+        ClassPathXmlApplicationContext cpx =
+                new ClassPathXmlApplicationContext("configuration.xml");
+        return (SecurityService) cpx.getBean("securityService");
     }
 }
