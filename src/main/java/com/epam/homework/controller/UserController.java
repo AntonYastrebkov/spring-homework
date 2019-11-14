@@ -2,9 +2,9 @@ package com.epam.homework.controller;
 
 import com.epam.homework.entity.User;
 import com.epam.homework.entity.UserDto;
-import com.epam.homework.entity.UserRole;
 import com.epam.homework.exception.UserRoleException;
 import com.epam.homework.service.UserService;
+import com.epam.security.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,17 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+    private final SecurityService securityService;
     private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(SecurityService securityService, UserService userService) {
+        this.securityService = securityService;
         this.userService = userService;
     }
 
     @GetMapping("/admin")
     public void adminCheck(User user) {
-        if(user.getUserRole().equals(UserRole.ADMIN_USER)) {
+        if(securityService.isAdmin(user.getUserRole().toString())) {
             System.out.println("Welcome Admin!");
         } else {
             throw  new UserRoleException("Go AWAY!");
