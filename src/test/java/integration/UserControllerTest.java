@@ -1,6 +1,5 @@
 package integration;
 
-import com.epam.homework.config.ApplicationConfig;
 import com.epam.homework.config.SwaggerConfig;
 import com.epam.homework.controller.TaskController;
 import com.epam.homework.controller.UserController;
@@ -32,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {ApplicationConfig.class, SwaggerConfig.class})
+@ContextConfiguration(classes = {SwaggerConfig.class})
 @WebAppConfiguration
 public class UserControllerTest {
 
