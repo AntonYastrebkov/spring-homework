@@ -13,21 +13,26 @@ import java.util.UUID;
 import com.epam.homework.entity.UserDto;
 import com.epam.homework.exception.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletContext;
 
 @Service
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
-    @Value("${upload.path}")
-    private String UPLOAD_PATH; // = "/C:/Users/Munchausen/IdeaProjects/com-epam-homework/uploads";
+    private final ServletContext context;
+    // @Value("${upload.path}")
+    private final String UPLOAD_PATH;// = "classpath:uploads";
 
     @Autowired
-    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository) {
+    public TaskServiceImpl(TaskRepository taskRepository, UserRepository userRepository, ServletContext context) {
         this.taskRepository = taskRepository;
         this.userRepository = userRepository;
+        this.context = context;
+        UPLOAD_PATH = context.getRealPath("uploads");
+        System.out.println(UPLOAD_PATH);
     }
 
     @Override
