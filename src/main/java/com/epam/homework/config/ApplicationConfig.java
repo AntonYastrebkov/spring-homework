@@ -25,7 +25,7 @@ import java.util.Properties;
 // @PropertySource(value = "file:src/main/resources/database.properties")
 //@EnableAspectJAutoProxy
 //@EnableJpaRepositories(basePackages = "com.epam.homework.dao")
-@PropertySource(value = "classpath:application.properties")
+// @PropertySource(value = "classpath:application.properties")
 public class ApplicationConfig {
 
 //    @Value("${url}")
